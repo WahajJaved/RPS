@@ -29,6 +29,7 @@
 			playerSelection = playerSelection.toLowerCase();
 			let computed = dict[playerSelection] - dict[computerSelection];
 
+			/* This switch statement works in a sort of modulus manner */
 			if (computed == 0) {
 				result = "No one won";
 			}
