@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 
 <head>
-	<title>Rock Paper Scissors</title>
+	<title>rock paper scissors</title>
 </head>
 
 <body>
@@ -11,11 +11,11 @@
 		dict["paper"] = 1;
 		dict["scissors"] = 2;
 
-		let computerPoints = 0;
-		let playerPoints = 0;
-		function computerPlay()
+		let computerpoints = 0;
+		let playerpoints = 0;
+		function computerplay()
 		{
-			let rand = Math.floor(Math.random()*3);
+			let rand = math.floor(math.random()*3);
 			if(rand == 0)
 				return 'rock';
 			else if (rand == 1)
@@ -45,7 +45,6 @@
 		}
 		function game()
 		{
-			for(let i = 0; i < 5 ; i++)
 				console.log(playRound());
 			if (playerPoints > computerPoints)
 				console.log("Congragulations! You won the best of five.");
