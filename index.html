@@ -1,63 +1,73 @@
 <!DOCTYPE HTML>
 
 <head>
-	<title>rock paper scissors</title>
+	<title>Rock Paper Scissors</title>
 </head>
 
 <body>
-	<button id='rock' value="rock">Rock</button>
-	<button id='paper' value="paper">Paper</button>
-	<button id='scissors' value="scissors">Scissors</button>
+	<button id='Rock' value="Rock">Rock</button>
+	<button id='Paper' value="Paper">Paper</button>
+	<button id='Scissors' value="Scissors">Scissors</button>
+	<div id="score">
+		<ul>
+			<li id='cScore' value='0'>Computer Score</li>
+			<li id='pScore' value='0'>Player Score</li>
+		</ol>
+	</div>
+	<div>
+		<h1 id="status">Status</h1>
+	</div>
 	<script>
 		let dict = {};
-		dict["rock"] = 0;
-		dict["paper"] = 1;
-		dict["scissors"] = 2;
+		dict["Rock"] = 0;
+		dict["Paper"] = 1;
+		dict["Scissors"] = 2;
 
 		let computerpoints = 0;
 		let playerpoints = 0;
 		function computerPlay()
 		{
-			let rand = Math.floor(math.random()*3);
+			let rand = Math.floor(Math.random()*3);
 			if(rand == 0)
-				return 'rock';
+				return 'Rock';
 			else if (rand == 1)
-				return 'paper';
+				return 'Paper';
 			else
-				return 'scissors';
+				return 'Scissors';
 		}
 		function playRound(playerSelection = playerPlay() , computerSelection = computerPlay())
 		{
 			let result;
-			playerSelection = playerSelection.toLowerCase();
 			let computed = dict[playerSelection] - dict[computerSelection];
-
+			
+			playerPoints = document.querySelector('#pScore');
+			computerPoints = document.querySelector('#cScore');
+			let status = document.querySelector('#status');
+			console.log(status);
 			/* This switch statement works in a sort of modulus manner */
 			if (computed == 0) {
-				result = "No one won";
+				status.textContent = "No one won";
 			}
 			else if (computed == 1  || computed == -2) {
-				result = 'You won. ' + playerSelection + ' beats ' + computerSelection;
-				playerPoints++;
+				status.textContent = 'You won. ' + playerSelection + ' beats ' + computerSelection;
+				playerPoints.value++;
+				if (playerPoints.value === 5)
+					status.textContent= "Player Wins , Game Over "
+				else
+					playerPoints.textContent="Player Score = "+ playerPoints.value;
 			}
 			else {
-				result = 'You lost. ' + computerSelection + ' beats ' + playerSelection;
-				computerPoints++;
+				status.textContent = 'You lost. ' + computerSelection + ' beats ' + playerSelection;
+				computerPoints.value++;
+				if (computerPoints.value === 5)
+					status.textContent= "Computer Wins , Game Over "
+				else
+					computerPoints.textContent="Computer Score = "+ computerPoints.value;
 			}
+			
 			return result;
 		}
-		function game()
-		{
-			
-			if (playerPoints > computerPoints)
-				console.log("Congragulations! You won the best of five.");
-			else if (playerPoints < computerPoints){
-				console.log("You suck. Boo!");
-			}
-			else {
-				console.log("Fair Game");
-			}
-		}
+
 		var btn = document.querySelectorAll('button');
 		btn.forEach(button => 
 		{
